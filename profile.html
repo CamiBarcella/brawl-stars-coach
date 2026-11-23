@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfil - Brawl Stars Coach</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html"><span class="brand-badge">★</span><span>Brawl Stars Coach</span></a>
+      <button class="nav-toggle" aria-label="Abrir menú">☰</button>
+      <nav class="nav-links">
+        <a href="index.html" data-page="index.html">Inicio</a>
+        <a href="matchups.html" data-page="matchups.html">Matchups</a>
+        <a href="maps-modes.html" data-page="maps-modes.html">Mapas y modos</a>
+        <a href="academy.html" data-page="academy.html">Academia</a>
+        <a href="profile.html" data-page="profile.html">Perfil</a>
+      </nav>
+      <div class="nav-auth" id="nav-auth"></div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-head">
+      <div class="container">
+        <div class="eyebrow">Cuenta y progreso</div>
+        <h1>Tu perfil de entrenamiento</h1>
+        <p>Regístrate o inicia sesión para guardar tu avance, resultados de pruebas y estadísticas personales en Supabase.</p>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:1rem;">
+      <div class="container stack">
+        <div id="supabase-notice"></div>
+
+        <div id="auth-view" class="auth-layout">
+          <div class="panel">
+            <h3>Iniciar sesión</h3>
+            <form id="login-form" class="form-grid">
+              <div class="field"><label for="login-email">Email</label><input id="login-email" type="email" required autocomplete="email"></div>
+              <div class="field"><label for="login-password">Contraseña</label><input id="login-password" type="password" required autocomplete="current-password"></div>
+              <button class="btn btn-primary" type="submit">Entrar</button>
+            </form>
+            <div id="login-status" class="status-msg hidden"></div>
+          </div>
+
+          <div class="panel">
+            <h3>Crear cuenta</h3>
+            <form id="register-form" class="form-grid">
+              <div class="field"><label for="register-username">Nombre de usuario</label><input id="register-username" type="text" required maxlength="30" autocomplete="username"></div>
+              <div class="field"><label for="register-email">Email</label><input id="register-email" type="email" required autocomplete="email"></div>
+              <div class="field"><label for="register-password">Contraseña</label><input id="register-password" type="password" required minlength="6" autocomplete="new-password"></div>
+              <button class="btn btn-primary" type="submit">Registrarme</button>
+            </form>
+            <div id="register-status" class="status-msg hidden"></div>
+          </div>
+        </div>
+
+        <div id="profile-view" class="hidden stack">
+          <div class="profile-grid">
+            <div class="panel">
+              <div class="section-header" style="margin-bottom:0.5rem;">
+                <div>
+                  <h3>Perfil</h3>
+                  <p class="muted small" id="profile-email">—</p>
+                </div>
+                <button class="btn btn-secondary btn-sm" id="logout-btn">Cerrar sesión</button>
+              </div>
+              <form id="profile-form" class="form-grid">
+                <div class="field"><label for="display-name">Nombre visible</label><input id="display-name" type="text" maxlength="40"></div>
+                <div class="field"><label for="favorite-brawler">Brawler favorito</label><select id="favorite-brawler"></select></div>
+                <button class="btn btn-primary" type="submit">Guardar perfil</button>
+              </form>
+              <div id="profile-status" class="status-msg hidden"></div>
+            </div>
+
+            <div class="panel">
+              <h3>Resumen</h3>
+              <div class="stat-grid">
+                <div class="stat"><div class="value" id="summary-lessons">0</div><div class="label">Lecciones completadas</div></div>
+                <div class="stat"><div class="value" id="summary-quizzes">0</div><div class="label">Pruebas realizadas</div></div>
+                <div class="stat"><div class="value" id="summary-best">—</div><div class="label">Mejor puntaje</div></div>
+                <div class="stat"><div class="value" id="summary-stats">0</div><div class="label">Registros de stats</div></div>
+              </div>
+              <div class="divider"></div>
+              <p class="muted small">Los datos se guardan en tu proyecto Supabase con RLS: solo tú puedes ver y editar tu información.</p>
+            </div>
+          </div>
+
+          <div class="panel">
+            <h3>Agregar estadística personal</h3>
+            <form id="stat-form" class="toolbar">
+              <div class="field"><label for="stat-brawler">Brawler</label><select id="stat-brawler"></select></div>
+              <div class="field"><label for="stat-mode">Modo</label><select id="stat-mode"></select></div>
+              <div class="field"><label for="stat-map">Mapa</label><input id="stat-map" type="text" placeholder="Nombre del mapa"></div>
+              <div class="field"><label for="stat-wins">Victorias</label><input id="stat-wins" type="number" min="0" value="0"></div>
+              <div class="field"><label for="stat-losses">Derrotas</label><input id="stat-losses" type="number" min="0" value="0"></div>
+              <div class="field"><label for="stat-notes">Notas</label><input id="stat-notes" type="text" placeholder="Ej: buen counter contra tanques"></div>
+              <button class="btn btn-primary" type="submit">Guardar</button>
+            </form>
+            <div id="stat-status" class="status-msg hidden"></div>
+            <div class="table-wrap mt-2">
+              <table>
+                <thead><tr><th>Brawler</th><th>Modo</th><th>Mapa</th><th>W/L</th><th>Notas</th><th>Fecha</th><th></th></tr></thead>
+                <tbody id="stats-body"><tr><td colspan="7" class="muted">Sin datos.</td></tr></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="panel">
+            <h3>Historial de pruebas</h3>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Prueba</th><th>Puntaje</th><th>Fecha</th></tr></thead>
+                <tbody id="attempts-body"><tr><td colspan="3" class="muted">Sin intentos.</td></tr></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>Usa solo la anon key de Supabase en frontend. Las políticas RLS protegen los datos por usuario.</p>
+      <p>Proyecto fan-made no afiliado a Supercell.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
+  <script src="js/supabase-client.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/profile.js"></script>
+</body>
+</html>

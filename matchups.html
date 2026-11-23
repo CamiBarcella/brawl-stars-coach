@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matchups - Brawl Stars Coach</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html"><span class="brand-badge">★</span><span>Brawl Stars Coach</span></a>
+      <button class="nav-toggle" aria-label="Abrir menú">☰</button>
+      <nav class="nav-links">
+        <a href="index.html" data-page="index.html">Inicio</a>
+        <a href="matchups.html" data-page="matchups.html">Matchups</a>
+        <a href="maps-modes.html" data-page="maps-modes.html">Mapas y modos</a>
+        <a href="academy.html" data-page="academy.html">Academia</a>
+        <a href="profile.html" data-page="profile.html">Perfil</a>
+      </nav>
+      <div class="nav-auth" id="nav-auth"></div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-head">
+      <div class="container">
+        <div class="eyebrow">Matchups</div>
+        <h1>¿Quién gana el enfrentamiento?</h1>
+        <p>Selecciona tu brawler, el oponente, el modo y el mapa para obtener una recomendación rápida. Usa esto como guía y adáptalo a la composición y al meta actual.</p>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:1rem;">
+      <div class="container grid-2">
+        <div class="panel">
+          <h3>Buscar matchup</h3>
+          <div class="filters">
+            <div class="field">
+              <label for="brawler">Tu brawler</label>
+              <select id="brawler"></select>
+            </div>
+            <div class="field">
+              <label for="opponent">Oponente</label>
+              <select id="opponent"></select>
+            </div>
+            <div class="field">
+              <label for="mode">Modo</label>
+              <select id="mode"></select>
+            </div>
+            <div class="field">
+              <label for="map">Mapa</label>
+              <select id="map"></select>
+            </div>
+          </div>
+          <div class="toolbar">
+            <button class="btn btn-primary" id="check-matchup">Analizar</button>
+            <button class="btn btn-ghost" id="swap-brawlers">Intercambiar</button>
+          </div>
+          <div id="matchup-result" class="result-list"></div>
+        </div>
+
+        <div class="panel">
+          <h3>Resumen del brawler</h3>
+          <div id="brawler-summary" class="muted">Selecciona un brawler para ver sus fortalezas y debilidades.</div>
+          <div class="divider"></div>
+          <h4>Consejos generales</h4>
+          <div id="general-tips" class="result-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="eyebrow">Explorar</div>
+            <h2>Matchups destacados</h2>
+            <p>Algunos enfrentamientos comunes incluidos en la base de datos de ejemplo.</p>
+          </div>
+        </div>
+        <div id="featured-matchups" class="map-grid"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>Los matchups son orientativos. El meta cambia con balanceos y composiciones.</p>
+      <p>Proyecto fan-made no afiliado a Supercell.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
+  <script src="js/supabase-client.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/matchups.js"></script>
+</body>
+</html>

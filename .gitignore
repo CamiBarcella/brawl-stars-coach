@@ -1,0 +1,15 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Local env / secrets
+.env
+.env.local
+js/supabase-config.local.js
+
+# Node/Python leftovers (not required, but safe)
+node_modules/
+__pycache__/
+*.pyc

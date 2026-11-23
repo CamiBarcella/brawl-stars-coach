@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brawl Stars Coach - Mejora tu juego</title>
+  <meta name="description" content="Guía fan-made de Brawl Stars: matchups, mapas, modos, academia y seguimiento de progreso con Supabase.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html"><span class="brand-badge">★</span><span>Brawl Stars Coach</span></a>
+      <button class="nav-toggle" aria-label="Abrir menú">☰</button>
+      <nav class="nav-links">
+        <a href="index.html" data-page="index.html">Inicio</a>
+        <a href="matchups.html" data-page="matchups.html">Matchups</a>
+        <a href="maps-modes.html" data-page="maps-modes.html">Mapas y modos</a>
+        <a href="academy.html" data-page="academy.html">Academia</a>
+        <a href="profile.html" data-page="profile.html">Perfil</a>
+      </nav>
+      <div class="nav-auth" id="nav-auth"></div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Guía fan-made para Brawl Stars</div>
+          <h1>Mejora tus partidas con decisiones más inteligentes</h1>
+          <p>Aprende matchups, descubre qué brawlers funcionan mejor en cada mapa y modo, y sigue tu progreso con lecciones y pruebas guardadas en Supabase.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="matchups.html">Explorar matchups</a>
+            <a class="btn btn-secondary" href="academy.html">Ir a la academia</a>
+          </div>
+        </div>
+        <div class="hero-card">
+          <h3>Qué encontrarás</h3>
+          <p class="muted small">Una base práctica para tomar mejores decisiones antes y durante la partida.</p>
+          <div class="stat-grid">
+            <div class="stat"><div class="value" id="stat-brawlers">—</div><div class="label">Brawlers base</div></div>
+            <div class="stat"><div class="value" id="stat-maps">—</div><div class="label">Mapas guía</div></div>
+            <div class="stat"><div class="value" id="stat-modes">—</div><div class="label">Modos</div></div>
+            <div class="stat"><div class="value" id="stat-lessons">—</div><div class="label">Lecciones</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="eyebrow">Herramientas</div>
+            <h2>Todo lo que necesitas para mejorar</h2>
+            <p>Diseñado para ser simple, rápido y útil en navegador. Compatible con Chrome en Windows y fácil de desplegar en GitHub Pages.</p>
+          </div>
+        </div>
+        <div class="grid-3">
+          <article class="panel card">
+            <div class="card-icon">⚔️</div>
+            <h3>Matchups</h3>
+            <p>Consulta si tu brawler es favorable, neutral o desfavorable contra otro, con consejos según mapa y modo.</p>
+            <div class="mt-2"><a class="btn btn-ghost btn-sm" href="matchups.html">Ver matchups</a></div>
+          </article>
+          <article class="panel card">
+            <div class="card-icon">🗺️</div>
+            <h3>Mapas y modos</h3>
+            <p>Identifica qué brawlers suelen rendir mejor en cada entorno y cuáles conviene evitar.</p>
+            <div class="mt-2"><a class="btn btn-ghost btn-sm" href="maps-modes.html">Ver mapas</a></div>
+          </article>
+          <article class="panel card">
+            <div class="card-icon">📚</div>
+            <h3>Academia y progreso</h3>
+            <p>Completa lecciones, haz pruebas y guarda tu avance con tu cuenta de Supabase.</p>
+            <div class="mt-2"><a class="btn btn-ghost btn-sm" href="academy.html">Empezar</a></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container grid-2">
+        <div class="panel">
+          <div class="eyebrow">Consejo rápido</div>
+          <h3>Piensa en el objetivo, no solo en kills</h3>
+          <p class="muted">En Atrapagemas, sobrevivir con gemas vale más que buscar una eliminación arriesgada. En Balón Brawl, una pared rota o un pase puede decidir la partida. Adapta tu decisión al modo.</p>
+        </div>
+        <div class="panel">
+          <div class="eyebrow">Supabase + GitHub</div>
+          <h3>Listo para publicar</h3>
+          <p class="muted">El frontend es estático (HTML/CSS/JS) para GitHub Pages. Supabase gestiona autenticación y guarda progreso, pruebas y estadísticas personales.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p><strong>Brawl Stars Coach</strong> es un proyecto fan-made con fines educativos. No afiliado a Supercell.</p>
+      <p>Hecho con HTML, CSS, JS y Supabase.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
+  <script src="js/supabase-client.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const d = window.BS_DATA;
+      document.getElementById('stat-brawlers').textContent = d.brawlers.length;
+      document.getElementById('stat-maps').textContent = d.maps.length;
+      document.getElementById('stat-modes').textContent = d.modes.length;
+      document.getElementById('stat-lessons').textContent = d.lessons.length;
+    });
+  </script>
+</body>
+</html>
